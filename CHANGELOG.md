@@ -7,7 +7,6 @@ All notable changes to this project will be documented in this file.
 - Added support for image upload for movies and series.
 - Added support for importing season and episode data from OMDB.
 - Added seasons and episodes information to the details page for series.
-- Added horizontal scrolling for movies on the homepage.
 - Improved the developer interface with new sections, buttons, and text boxes.
 - Improved the details page with additional information and buttons.
 - Made the genre field editable manually.
