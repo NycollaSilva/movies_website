@@ -121,6 +121,15 @@ function scrollLeft(containerSelector) {
     });
 }
 
+document.getElementById('search-input').addEventListener('input', function() {
+    var heroSection = document.getElementById('hero');
+    if (this.value.length > 0) {
+        heroSection.style.display = 'none';
+    } else {
+        heroSection.style.display = 'block';
+    }
+});
+
 function scrollRight(containerSelector) {
     const container = document.querySelector(containerSelector);
     container.scrollBy({
