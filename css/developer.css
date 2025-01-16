@@ -1,0 +1,56 @@
+/* Developer panel styles */
+.developer-panel {
+    padding: 20px;
+    text-align: center;
+}
+
+.developer-panel h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.developer-panel button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.developer-panel button:hover {
+    background-color: #ddd;
+}
+
+#form-container {
+    margin-top: 20px;
+}
+
+#list-container {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#list-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+#list-container ul li {
+    margin: 10px 0;
+}
+
+#list-container ul li button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#list-container ul li button:hover {
+    background-color: #ddd;
+}

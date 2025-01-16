@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/details.css"> <!-- Arquivo CSS específico para a página de detalhes -->
+</head>
+<body>
+    <header>
+        <div class="logo">MovieStream</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="movies.html">Movies</a></li>
+                <li><a href="series.html">Series</a></li>
+                <li><a href="mylist.html">My List</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="details">
+            <div class="background-image" id="background-image"></div>
+            <div class="details-content">
+                <h2 id="details-title"></h2>
+                <img id="details-image" src="" alt="">
+                <p id="details-year"></p>
+                <p id="details-genre"></p>
+                <p id="details-rating"></p>
+                <p id="details-synopsis"></p>
+                <div id="seasons-container"></div>
+                <div id="episodes-container"></div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 MovieStream. All rights reserved.</p>
+    </footer>
+    <script src="javascript/details.js"></script> <!-- Arquivo JavaScript específico para a página de detalhes -->
+</body>
+</html>

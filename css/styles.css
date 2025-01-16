@@ -1,0 +1,232 @@
+body {
+    font-family: Arial, sans-serif;
+    margin:  0;
+    padding: 0;
+    background-color: #141414;
+    color: #fff;
+}
+
+/* Header styles */
+header {
+    background-color: #000; /* Black background for the navbar */
+    padding: 10px 0;
+}
+
+header .logo {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header nav ul li {
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Search bar styles */
+header .search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+header .search input {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Hero section styles */
+.hero {
+    position: relative;
+    text-align: center;
+    color: #fff;
+    padding: 50px 20px;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    filter: blur(8px); /* Apply a slight blur */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content img {
+    width: 300px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.hero-buttons button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#watch-button {
+    background-color: #ff6347;
+    color: #fff;
+}
+
+#watch-button:hover {
+    background-color: #ff4500;
+}
+
+#add-to-list-button {
+    background-color: #ccc;
+    color: #000;
+}
+
+#add-to-list-button:hover {
+    background-color: #aaa;
+}
+
+.search {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#search-input {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Movie and series grid styles */
+.movie-grid, .series-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.movie-item, .series-item {
+    position: relative;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.movie-item:hover, .series-item:hover {
+    transform: scale(1.05);
+}
+
+.movie-item img, .series-item img {
+    width: 100%;
+    height: 300px; /* Fixed height for posters */
+    object-fit: cover; /* Ensure the image covers the area */
+    border-radius: 8px;
+}
+
+.movie-info, .series-info {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.movie-item:hover .movie-info, .series-item:hover .series-info {
+    display: block;
+    opacity: 1;
+}
+
+.movie-info h3, .series-info h3 {
+    margin-top: 0;
+}
+
+.add-to-list-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-list-btn:hover {
+    background-color: #ff4500;
+}
+
+.add-to-list-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #000;
+}

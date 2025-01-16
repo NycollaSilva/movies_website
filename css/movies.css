@@ -1,0 +1,72 @@
+.movie-item {
+    position: relative;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.movie-item:hover {
+    transform: scale(1.05);
+}
+
+.movie-item img {
+    width: 100%;
+    height: 300px; /* Fixed height for posters */
+    object-fit: cover; /* Ensure the image covers the area */
+    border-radius: 8px;
+}
+
+.movie-info {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.movie-item:hover .movie-info {
+    display: block;
+    opacity: 1;
+}
+
+.movie-info h3 {
+    margin-top: 0;
+}
+
+/* Movie grid styles */
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.add-to-list-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-list-btn:hover {
+    background-color: #ff4500;
+}
+
+.add-to-list-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
