@@ -1,56 +1,142 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #000; /* Black background for the navbar */
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+header nav ul li {
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
 /* Developer panel styles */
 .developer-panel {
+    max-width: 800px;
+    margin: 20px auto;
     padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
 .developer-panel h2 {
-    font-size: 24px;
+    font-size: 28px;
     margin-bottom: 20px;
 }
 
-.developer-panel button {
-    margin: 10px;
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.btn {
     padding: 10px 20px;
     font-size: 16px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    background-color: #ff6347; /* Use the same color as the watch button */
+    color: #fff;
     transition: background-color 0.3s ease;
 }
 
-.developer-panel button:hover {
-    background-color: #ddd;
+.btn:hover {
+    background-color: #ff4500; /* Darker shade for hover effect */
 }
 
-#form-container {
-    margin-top: 20px;
-}
-
-#list-container {
+.form-container, .list-container {
     margin-top: 20px;
     text-align: left;
 }
 
-#list-container ul {
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form label {
+    font-weight: bold;
+}
+
+form input, form select, form textarea, form button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #28a745; /* Green color for submit button */
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #218838; /* Darker shade for hover effect */
+}
+
+.list-container ul {
     list-style: none;
     padding: 0;
 }
 
-#list-container ul li {
-    margin: 10px 0;
+.list-container ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
 }
 
-#list-container ul li button {
-    margin-left: 10px;
+.list-container ul li button {
     padding: 5px 10px;
     font-size: 14px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    background-color: #dc3545; /* Red color for remove button */
+    color: #fff;
     transition: background-color 0.3s ease;
 }
 
-#list-container ul li button:hover {
-    background-color: #ddd;
+.list-container ul li button:hover {
+    background-color: #c82333; /* Darker shade for hover effect */
 }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Details</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/details.css"> <!-- Arquivo CSS específico para a página de detalhes -->
+    <link rel="stylesheet" href="css/details.css"> <!-- Specific CSS for the details page -->
 </head>
 <body>
     <header>
@@ -23,20 +23,28 @@
         <section class="details">
             <div class="background-image" id="background-image"></div>
             <div class="details-content">
-                <h2 id="details-title"></h2>
-                <img id="details-image" src="" alt="">
-                <p id="details-year"></p>
-                <p id="details-genre"></p>
-                <p id="details-rating"></p>
-                <p id="details-synopsis"></p>
-                <div id="seasons-container"></div>
-                <div id="episodes-container"></div>
+                <div class="details-poster">
+                    <img id="details-image" src="" alt="">
+                </div>
+                <div class="details-info">
+                    <h2 id="details-title"></h2>
+                    <p id="details-year"></p>
+                    <p id="details-genre"></p>
+                    <p id="details-rating"></p>
+                    <p id="details-synopsis"></p>
+                    <p id="details-seasons" style="display: none;"></p> <!-- Hidden by default -->
+                    <p id="details-episodes" style="display: none;"></p> <!-- Hidden by default -->
+                    <div class="details-buttons">
+                        <button id="watch-button">Watch</button>
+                        <button id="add-to-list-button">Add to My List</button>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
     <footer>
         <p>&copy; 2023 MovieStream. All rights reserved.</p>
     </footer>
-    <script src="javascript/details.js"></script> <!-- Arquivo JavaScript específico para a página de detalhes -->
+    <script src="javascript/details.js"></script> <!-- Specific JavaScript for the details page -->
 </body>
 </html>

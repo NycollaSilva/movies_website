@@ -1,7 +1,6 @@
 .details {
     position: relative;
     padding: 20px;
-    text-align: center;
     color: #fff;
 }
 
@@ -14,7 +13,7 @@
     background-size: cover;
     background-position: center;
     z-index: -1;
-    filter: blur(8px); /* Aplica um leve desfoque */
+    filter: blur(8px); /* Apply a slight blur */
 }
 
 .background-image::after {
@@ -29,50 +28,63 @@
 }
 
 .details-content {
+    display: flex;
+    align-items: flex-start;
     position: relative;
     z-index: 1;
 }
 
-.details img {
-    width: 300px; /* Tamanho predefinido para a capa do filme */
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 20px;
+.details-poster {
+    flex: 0 0 300px; /* Fixed width for the poster */
+    margin-right: 20px;
 }
 
-.details p {
-    font-size: 18px;
+.details-poster img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.details-info {
+    flex: 1;
+}
+
+.details-info h2 {
+    margin-top: 0;
+}
+
+.details-info p {
     margin: 10px 0;
 }
 
-#seasons-container {
+.details-buttons {
     margin-top: 20px;
 }
 
-#episodes-container {
-    margin-top: 20px;
-}
-
-.season-button {
-    margin: 5px;
+.details-buttons button {
     padding: 10px 20px;
-    background-color: #ff6347;
-    color: #fff;
+    font-size: 16px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-right: 10px;
 }
 
-.season-button:hover {
+#watch-button {
+    background-color: #ff6347;
+    color: #fff;
+}
+
+#watch-button:hover {
     background-color: #ff4500;
 }
 
-.episode-list {
-    list-style-type: none;
-    padding: 0;
+#add-to-list-button {
+    background-color: #ccc;
+    color: #000;
 }
 
-.episode-list li {
-    margin: 5px 0;
+#add-to-list-button:hover {
+    background-color: #aaa;
 }

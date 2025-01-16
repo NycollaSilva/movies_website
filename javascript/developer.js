@@ -1,14 +1,13 @@
-window.movies = [  //Preset movies
+window.movies = [  // Preset movies
     { title: 'Movie 1', image: 'images/movie1.jpg', backgroundImage: 'images/background1.jpg', year: 2023, genre: 'Drama', rating: 8.5, synopsis: 'A young prince explores the universe and learns about love and loss.' },
     { title: 'Movie 2', image: 'images/movie2.jpg', backgroundImage: 'images/background2.jpg', year: 2017, genre: 'Action', rating: 7.8, synopsis: 'A young blade runner discovers a long-buried secret that has the potential to plunge what\'s left of society into chaos.' },
     { title: 'Movie 3', image: 'images/movie3.jpg', backgroundImage: 'images/background3.jpg', year: 2021, genre: 'Comedy', rating: 8.0, synopsis: 'A hilarious journey of friends navigating life and love.' },
 ];
 
-window.series = [ //Preset series
-    { title: 'Serie 1', image: 'images/serie1.jpg', backgroundImage: 'images/background4.jpg', year: 2013, genre: 'Comedy', rating: 9.0, synopsis: 'A group of friends navigate life and relationships while working in academia.', seasons: 12 },
-    { title: 'Serie 2', image: 'images/serie2.jpg', backgroundImage: 'images/background5.jpg', year: 2022, genre: 'Sci-Fi', rating: 8.7, synopsis: 'A thrilling sci-fi adventure through space and time.', seasons: 3 },
-    { title: 'Serie 3', image: 'images/serie3.jpg', backgroundImage: 'images/background6.jpg', year: 2021, genre: 'Drama', rating: 8.3, synopsis: 'A dramatic tale of love, loss, and redemption.', seasons: 2 },
-    
+window.series = [ // Preset series
+    { title: 'Serie 1', image: 'images/serie1.jpg', backgroundImage: 'images/background4.jpg', year: 2013, genre: 'Comedy', rating: 9.0, synopsis: 'A group of friends navigate life and relationships while working in academia.', seasons: 12, episodes: 24 },
+    { title: 'Serie 2', image: 'images/serie2.jpg', backgroundImage: 'images/background5.jpg', year: 2022, genre: 'Sci-Fi', rating: 8.7, synopsis: 'A thrilling sci-fi adventure through space and time.', seasons: 3, episodes: 10 },
+    { title: 'Serie 3', image: 'images/serie3.jpg', backgroundImage: 'images/background6.jpg', year: 2021, genre: 'Drama', rating: 8.3, synopsis: 'A dramatic tale of love, loss, and redemption.', seasons: 2, episodes: 8 },
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -49,21 +48,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button type="button" id="fetch-omdb-btn">Fetch from OMDB</button><br>
                 <label>Title: <input type="text" id="${type}-title"></label><br>
                 <label>Image URL: <input type="text" id="${type}-image"></label><br>
+                <label>Upload Image: <input type="file" id="${type}-image-upload" accept="image/*"></label><br>
                 <label>Background Image URL: <input type="text" id="${type}-background-image"></label><br>
+                <label>Upload Background Image: <input type="file" id="${type}-background-image-upload" accept="image/*"></label><br>
                 <label>Year: <input type="number" id="${type}-year"></label><br>
-                <label>Genre: 
-                    <select id="${type}-genre">
-                        ${genres.map(genre => `<option value="${genre}">${genre}</option>`).join('')}
-                    </select>
-                </label><br>
+                <label>Genre: <input type="text" id="${type}-genre"></label><br>
                 <label>Rating: <input type="number" step="0.1" id="${type}-rating"></label><br>
                 <label>Synopsis: <textarea id="${type}-synopsis"></textarea></label><br>
-                ${type === 'series' ? '<label>Seasons: <input type="number" id="series-seasons"></label><br>' : ''}
+                ${type === 'series' ? '<label>Seasons: <input type="number" id="series-seasons"></label><br><label>Episodes: <input type="number" id="series-episodes"></label><br>' : ''}
                 <button type="submit">Add ${type.charAt(0).toUpperCase() + type.slice(1)}</button>
             </form>
         `;
 
         document.getElementById('fetch-omdb-btn').addEventListener('click', fetchFromOMDB);
+
+        document.getElementById(`${type}-image-upload`).addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                document.getElementById(`${type}-image`).value = reader.result;
+            };
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById(`${type}-background-image-upload`).addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                document.getElementById(`${type}-background-image`).value = reader.result;
+            };
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
 
         document.getElementById(`add-${type}-form`).addEventListener('submit', (e) => {
             e.preventDefault();
@@ -79,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         const omdbId = omdbIdMatch[1]; // Extract the OMDB ID from the URL
-        const apiKey = 'YOUR_OMDB_API_KEY'; // Replace with your OMDB API key
+        const apiKey = '8ea8c787'; // Replace with your OMDB API key
 
         try {
             const response = await fetch(`http://www.omdbapi.com/?i=${omdbId}&apikey=${apiKey}`);
@@ -91,11 +110,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById(`${type}-image`).value = data.Poster;
                 document.getElementById(`${type}-background-image`).value = data.Poster; // Use the same poster as background
                 document.getElementById(`${type}-year`).value = data.Year;
-                document.getElementById(`${type}-genre`).value = data.Genre.split(', ')[0]; // Get the first genre
+                document.getElementById(`${type}-genre`).value = data.Genre; // Get all genres
                 document.getElementById(`${type}-rating`).value = data.imdbRating;
                 document.getElementById(`${type}-synopsis`).value = data.Plot;
                 if (type === 'series') {
                     document.getElementById('series-seasons').value = data.totalSeasons;
+                    document.getElementById('series-episodes').value = data.totalEpisodes; // Assuming totalEpisodes is available
                 }
             } else {
                 alert('Item not found!');
@@ -115,8 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const rating = document.getElementById(`${type}-rating`).value;
         const synopsis = document.getElementById(`${type}-synopsis`).value;
         const seasons = type === 'series' ? document.getElementById('series-seasons').value : null;
+        const episodes = type === 'series' ? document.getElementById('series-episodes').value : null;
 
-        const newItem = { title, image, backgroundImage, year, genre, rating, synopsis, seasons };
+        const newItem = { title, image, backgroundImage, year, genre, rating, synopsis, seasons, episodes };
 
         if (type === 'movie') {
             window.movies.unshift(newItem); // Add to the beginning of the list
@@ -147,19 +168,39 @@ document.addEventListener('DOMContentLoaded', () => {
             <form id="edit-${type}-form">
                 <label>Title: <input type="text" id="${type}-title" value="${item.title}"></label><br>
                 <label>Image URL: <input type="text" id="${type}-image" value="${item.image}"></label><br>
+                <label>Upload Image: <input type="file" id="${type}-image-upload" accept="image/*"></label><br>
                 <label>Background Image URL: <input type="text" id="${type}-background-image" value="${item.backgroundImage}"></label><br>
+                <label>Upload Background Image: <input type="file" id="${type}-background-image-upload" accept="image/*"></label><br>
                 <label>Year: <input type="number" id="${type}-year" value="${item.year}"></label><br>
-                <label>Genre: 
-                    <select id="${type}-genre">
-                        ${genres.map(genre => `<option value="${genre}" ${genre === item.genre ? 'selected' : ''}>${genre}</option>`).join('')}
-                    </select>
-                </label><br>
+                <label>Genre: <input type="text" id="${type}-genre" value="${item.genre}"></label><br>
                 <label>Rating: <input type="number" step="0.1" id="${type}-rating" value="${item.rating}"></label><br>
                 <label>Synopsis: <textarea id="${type}-synopsis">${item.synopsis}</textarea></label><br>
-                ${type === 'series' ? `<label>Seasons: <input type="number" id="series-seasons" value="${item.seasons}"></label><br>` : ''}
+                ${type === 'series' ? `<label>Seasons: <input type="number" id="series-seasons" value="${item.seasons}"></label><br><label>Episodes: <input type="number" id="series-episodes" value="${item.episodes}"></label><br>` : ''}
                 <button type="submit">Save Changes</button>
             </form>
         `;
+
+        document.getElementById(`${type}-image-upload`).addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                document.getElementById(`${type}-image`).value = reader.result;
+            };
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById(`${type}-background-image-upload`).addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                document.getElementById(`${type}-background-image`).value = reader.result;
+            };
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
 
         document.getElementById(`edit-${type}-form`).addEventListener('submit', (e) => {
             e.preventDefault();
@@ -176,8 +217,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const rating = document.getElementById(`${type}-rating`).value;
         const synopsis = document.getElementById(`${type}-synopsis`).value;
         const seasons = type === 'series' ? document.getElementById('series-seasons').value : null;
+        const episodes = type === 'series' ? document.getElementById('series-episodes').value : null;
 
-        const updatedItem = { title, image, backgroundImage, year, genre, rating, synopsis, seasons };
+        const updatedItem = { title, image, backgroundImage, year, genre, rating, synopsis, seasons, episodes };
 
         if (type === 'movie') {
             window.movies[index] = updatedItem;
@@ -201,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         alert(`${type.charAt(0).toUpperCase() + type.slice(1)} removed successfully!`);
-        showRemoveForm(type);
+        showList(type); // Update the list after removal
         updateLocalStorage();
         renderItems(window.movies, '.movie-grid');
         renderItems(window.series, '.series-grid');

@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     function loadFromLocalStorage() {
-        // Load movies, series, and myList from localStorage
         const storedMovies = localStorage.getItem('movies');
         const storedSeries = localStorage.getItem('series');
         const storedMyList = localStorage.getItem('myList');
