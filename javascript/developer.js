@@ -32,14 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
         showList('series');
     });
 
-    document.getElementById('remove-movie-btn').addEventListener('click', () => {
-        showRemoveForm('movie');
-    });
-
-    document.getElementById('remove-series-btn').addEventListener('click', () => {
-        showRemoveForm('series');
-    });
-
     function showForm(type) {
         formContainer.innerHTML = `
             <h3>Add ${type.charAt(0).toUpperCase() + type.slice(1)}</h3>
