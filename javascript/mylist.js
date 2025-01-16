@@ -39,6 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.stopPropagation(); // Prevent event propagation
                 removeFromMyList(item, e.target);
             });
+
+            itemElement.addEventListener('click', () => {
+                localStorage.setItem('selectedItem', JSON.stringify(item));
+                window.location.href = 'details.html';
+            });
         });
     }
 
@@ -58,4 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     renderItems(window.myList, '.mylist-grid', 'No items in your list.');
+});
+
+heroLink.addEventListener('click', () => {
+    localStorage.setItem('selectedItem', JSON.stringify(movie));
 });
