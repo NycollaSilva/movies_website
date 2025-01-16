@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="add-to-list-btn">${isInMyList(item) ? 'Added to My List' : 'Add to My List'}</button>
                 </div>
             `;
-            container.prepend(itemElement); // Add to the beginning of the container
+            container.appendChild(itemElement); // Add to the end of the container
 
             itemElement.querySelector('.add-to-list-btn').addEventListener('click', (e) => {
                 e.stopPropagation(); // Prevent event propagation
@@ -81,12 +81,17 @@ document.addEventListener('DOMContentLoaded', () => {
     function setFeaturedMovie(movie) {
         const heroBackground = document.getElementById('hero-background');
         const heroPoster = document.getElementById('hero-poster');
+        const heroLink = document.getElementById('hero-link');
         const watchButton = document.getElementById('watch-button');
         const addToListButton = document.getElementById('add-to-list-button');
 
         heroBackground.style.backgroundImage = `url(${movie.backgroundImage})`;
         heroPoster.src = movie.image;
         heroPoster.alt = movie.title;
+
+        heroLink.addEventListener('click', () => {
+            localStorage.setItem('selectedItem', JSON.stringify(movie));
+        });
 
         watchButton.addEventListener('click', () => {
             localStorage.setItem('selectedItem', JSON.stringify(movie));
