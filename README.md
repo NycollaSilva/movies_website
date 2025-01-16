@@ -18,13 +18,14 @@ This template is a web application template that allows users to browse, search,
 - JavaScript
 - LocalStorage
 
+### Prerequisites
+
+- Browser
+- OMDB API KEY
+
 ## Getting Started
 
 To get a local copy up and running, follow these simple steps.
-
-### Prerequisites
-
-You need a web browser to run this application.
 
 ### Installation
 
@@ -33,6 +34,22 @@ You need a web browser to run this application.
    git clone https://github.com/NycollaSilva/movie_film_template)
 
 2. Open `index.html` in your browser
+
+### Getting an OMDB API Key
+This application uses the OMDB API to fetch movie and series data from IMDB. To use the Developer Panel or any feature that requires external data fetching, you need an OMDB API key. Follow these steps to obtain your API key:
+
+1. Go to the [OMDB website](https://www.omdbapi.com/).
+2. Click on the "API Key" option in the navigation menu.
+3. Choose the plan that fits your needs (a free plan is available for basic usage).
+4. Sign up for an account or log in if you already have one.
+5. Once your account is created, you will receive an API key. Make sure to save it securely.
+
+### Adding Your API Key
+
+1. Open the `developer.js` file located in the `javascript/` directory.
+2. Find the placeholder for the API key.
+3. Replace 'YOUR_OMDB_API_KEY' with your actual API key.
+4. Save the file.
 
 ## Usage
 
@@ -75,7 +92,12 @@ The developer panel allows you to manage movies and series in the application. Y
 2. A list of movies or series will appear with options to remove each item.
 3. Click **"Remove"** to delete an item from the list.
 
+### Fetching data from OMDB
 
+1. Paste the movie's IMDB URL.
+2. Click the **"Fetch from OMDB"** button.
+3. It will pull the movie data from IMDB, filling in the data automatically
+   
 ---
 
 ## Contributing
@@ -83,13 +105,9 @@ The developer panel allows you to manage movies and series in the application. Y
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
-
 2. Create your Feature Branch (git checkout -b feature/AmazingFeature)
-
 3. Commit your Changes (git commit -m 'Add some AmazingFeature')
-
 4. Push to the Branch (git push origin feature/AmazingFeature)
-
 5. Open a Pull Request
 
 ## License
