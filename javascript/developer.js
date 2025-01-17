@@ -1,13 +1,13 @@
 window.movies = [  // Preset movies
-    { title: 'Movie 1', image: 'images/movie1.jpg', backgroundImage: 'images/background1.jpg', year: 2023, genre: 'Drama', rating: 8.5, synopsis: 'A young prince explores the universe and learns about love and loss.' },
-    { title: 'Movie 2', image: 'images/movie2.jpg', backgroundImage: 'images/background2.jpg', year: 2017, genre: 'Action', rating: 7.8, synopsis: 'A young blade runner discovers a long-buried secret that has the potential to plunge what\'s left of society into chaos.' },
-    { title: 'Movie 3', image: 'images/movie3.jpg', backgroundImage: 'images/background3.jpg', year: 2021, genre: 'Comedy', rating: 8.0, synopsis: 'A hilarious journey of friends navigating life and love.' },
+    { title: 'Movie 1', image: 'images/movie1.jpg', backgroundImage: 'images/background1.jpg', year: 2023, genre: 'Drama', rating: 8.5, synopsis: 'A young prince explores the universe and learns about love and loss.', videoUrl: 'https://drive.google.com/file/d/VIDEO_ID/view' },
+    { title: 'Movie 2', image: 'images/movie2.jpg', backgroundImage: 'images/background2.jpg', year: 2017, genre: 'Action', rating: 7.8, synopsis: 'A young blade runner discovers a long-buried secret that has the potential to plunge what\'s left of society into chaos.', videoUrl: 'https://drive.google.com/file/d/VIDEO_ID/view' },
+    { title: 'Movie 3', image: 'images/movie3.jpg', backgroundImage: 'images/background3.jpg', year: 2021, genre: 'Comedy', rating: 8.0, synopsis: 'A hilarious journey of friends navigating life and love.', videoUrl: 'https://drive.google.com/file/d/VIDEO_ID/view' },
 ];
 
 window.series = [ // Preset series
-    { title: 'Serie 1', image: 'images/serie1.jpg', backgroundImage: 'images/background4.jpg', year: 2013, genre: 'Comedy', rating: 9.0, synopsis: 'A group of friends navigate life and relationships while working in academia.', seasons: 12, episodes: 24 },
-    { title: 'Serie 2', image: 'images/serie2.jpg', backgroundImage: 'images/background5.jpg', year: 2022, genre: 'Sci-Fi', rating: 8.7, synopsis: 'A thrilling sci-fi adventure through space and time.', seasons: 3, episodes: 10 },
-    { title: 'Serie 3', image: 'images/serie3.jpg', backgroundImage: 'images/background6.jpg', year: 2021, genre: 'Drama', rating: 8.3, synopsis: 'A dramatic tale of love, loss, and redemption.', seasons: 2, episodes: 8 },
+    { title: 'Serie 1', image: 'images/serie1.jpg', backgroundImage: 'images/background4.jpg', year: 2013, genre: 'Comedy', rating: 9.0, synopsis: 'A group of friends navigate life and relationships while working in academia.', seasons: 12, episodes: 24, imdbID: 'tt0944947', videoUrl: 'https://drive.google.com/file/d/VIDEO_ID/view' },
+    { title: 'Serie 2', image: 'images/serie2.jpg', backgroundImage: 'images/background5.jpg', year: 2022, genre: 'Sci-Fi', rating: 8.7, synopsis: 'A thrilling sci-fi adventure through space and time.', seasons: 3, episodes: 10, imdbID: 'tt2861424', videoUrl: 'https://drive.google.com/file/d/VIDEO_ID/view' },
+    { title: 'Serie 3', image: 'images/serie3.jpg', backgroundImage: 'images/background6.jpg', year: 2021, genre: 'Drama', rating: 8.3, synopsis: 'A dramatic tale of love, loss, and redemption.', seasons: 2, episodes: 8, imdbID: 'tt4574334', videoUrl: 'https://drive.google.com/file/d/VIDEO_ID/view' },
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <label>Genre: <input type="text" id="${type}-genre"></label><br>
                 <label>Rating: <input type="number" step="0.1" id="${type}-rating"></label><br>
                 <label>Synopsis: <textarea id="${type}-synopsis"></textarea></label><br>
+                <label>Video URL: <input type="text" id="${type}-video-url"></label><br>
                 ${type === 'series' ? '<label>Seasons: <input type="number" id="series-seasons"></label><br><label>Episodes: <input type="number" id="series-episodes"></label><br>' : ''}
                 <button type="submit">Add ${type.charAt(0).toUpperCase() + type.slice(1)}</button>
             </form>
@@ -102,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById(`${type}-image`).value = data.Poster;
                 document.getElementById(`${type}-background-image`).value = data.Poster; // Use the same poster as background
                 document.getElementById(`${type}-year`).value = data.Year;
-                document.getElementById(`${type}-genre`).value = data.Genre; // Get all genres
+                document.getElementById(`${type}-genre}`).value = data.Genre; // Get all genres
                 document.getElementById(`${type}-rating`).value = data.imdbRating;
                 document.getElementById(`${type}-synopsis`).value = data.Plot;
                 if (type === 'series') {
@@ -126,10 +127,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const genre = document.getElementById(`${type}-genre`).value;
         const rating = document.getElementById(`${type}-rating`).value;
         const synopsis = document.getElementById(`${type}-synopsis`).value;
+        const videoUrl = document.getElementById(`${type}-video-url`).value;
         const seasons = type === 'series' ? document.getElementById('series-seasons').value : null;
         const episodes = type === 'series' ? document.getElementById('series-episodes').value : null;
 
-        const newItem = { title, image, backgroundImage, year, genre, rating, synopsis, seasons, episodes };
+        const newItem = { title, image, backgroundImage, year, genre, rating, synopsis, videoUrl, seasons, episodes };
 
         if (type === 'movie') {
             window.movies.unshift(newItem); // Add to the beginning of the list
@@ -167,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <label>Genre: <input type="text" id="${type}-genre" value="${item.genre}"></label><br>
                 <label>Rating: <input type="number" step="0.1" id="${type}-rating" value="${item.rating}"></label><br>
                 <label>Synopsis: <textarea id="${type}-synopsis">${item.synopsis}</textarea></label><br>
+                <label>Video URL: <input type="text" id="${type}-video-url" value="${item.videoUrl}"></label><br>
                 ${type === 'series' ? `<label>Seasons: <input type="number" id="series-seasons" value="${item.seasons}"></label><br><label>Episodes: <input type="number" id="series-episodes" value="${item.episodes}"></label><br>` : ''}
                 <button type="submit">Save Changes</button>
             </form>
@@ -208,10 +211,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const genre = document.getElementById(`${type}-genre`).value;
         const rating = document.getElementById(`${type}-rating`).value;
         const synopsis = document.getElementById(`${type}-synopsis`).value;
+        const videoUrl = document.getElementById(`${type}-video-url`).value;
         const seasons = type === 'series' ? document.getElementById('series-seasons').value : null;
         const episodes = type === 'series' ? document.getElementById('series-episodes').value : null;
 
-        const updatedItem = { title, image, backgroundImage, year, genre, rating, synopsis, seasons, episodes };
+        const updatedItem = { title, image, backgroundImage, year, genre, rating, synopsis, videoUrl, seasons, episodes };
 
         if (type === 'movie') {
             window.movies[index] = updatedItem;
@@ -280,4 +284,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderItems(window.movies, '.movie-grid');
     renderItems(window.series, '.series-grid');
+});
+
+const apiKey = '8ea8c787'; // Substitua pela sua chave de API
+
+async function fetchEpisodeData(imdbID, season, episode) {
+    const response = await fetch(`http://www.omdbapi.com/?i=${imdbID}&Season=${season}&Episode=${episode}&apikey=${apiKey}`);
+    const data = await response.json();
+    return data;
+}
+
+async function renderEpisodes(imdbID, season, containerSelector) {
+    const container = document.querySelector(containerSelector);
+    container.innerHTML = ''; // Clear the container before rendering
+
+    for (let episode = 1; episode <= 10; episode++) { // Supondo que há 10 episódios por temporada
+        const episodeData = await fetchEpisodeData(imdbID, season, episode);
+        const episodeElement = document.createElement('div');
+        episodeElement.classList.add('episode-item');
+        episodeElement.innerHTML = `
+            <img src="${episodeData.Poster}" alt="${episodeData.Title}">
+            <p>${episodeData.Title}</p>
+        `;
+        container.appendChild(episodeElement);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const selectedItem = JSON.parse(localStorage.getItem('selectedItem'));
+
+    if (selectedItem) {
+        document.getElementById('details-image').src = selectedItem.image;
+        document.getElementById('details-title').textContent = selectedItem.title;
+        document.getElementById('details-year').textContent = `Year: ${selectedItem.year}`;
+        document.getElementById('details-genre').textContent = `Genre: ${selectedItem.genre}`;
+        document.getElementById('details-rating').textContent = `Rating: ${selectedItem.rating}`;
+        document.getElementById('details-synopsis').textContent = selectedItem.synopsis;
+
+        if (selectedItem.type === 'series') {
+            document.getElementById('details-seasons').style.display = 'block';
+            document.getElementById('details-seasons').textContent = `Seasons: ${selectedItem.seasons}`;
+            document.getElementById('details-episodes').style.display = 'block';
+            document.getElementById('details-episodes').textContent = `Episodes: ${selectedItem.episodes.length}`;
+            document.getElementById('episodes-list').style.display = 'block';
+
+            renderEpisodes(selectedItem.imdbID, 1, '#episodes'); // Render episodes for season 1
+        }
+    }
+
+    document.getElementById('watch-button').addEventListener('click', () => {
+        // Implement watch functionality
+    });
+
+    document.getElementById('add-to-list-button').addEventListener('click', () => {
+        // Implement add to list functionality
+    });
 });

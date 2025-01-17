@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Now</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/watch.css">
+    <style>
+        /* Limitar o tamanho do player */
+        #video-player {
+            max-width: 100%; /* Não ultrapassa a largura da tela */
+            max-height: 80vh; /* Não ultrapassa 80% da altura da janela */
+            width: auto; /* Proporção automática */
+            height: auto; /* Proporção automática */
+            display: block; /* Centralizar no container */
+            margin: 0 auto;
+        }
+
+        .watch {
+            text-align: center; /* Centralizar o título e o player */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">MovieStream</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="movies.html">Movies</a></li>
+                <li><a href="series.html">Series</a></li>
+                <li><a href="mylist.html">My List</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="watch">
+            <h1>Watch Now</h1>
+            <video id="video-player" controls>
+                Your browser does not support the video tag.
+            </video>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 MovieStream. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const videoUrl = urlParams.get('videoUrl');
+            if (videoUrl) {
+                const videoPlayer = document.getElementById('video-player');
+                videoPlayer.src = videoUrl;
+                videoPlayer.load();
+            }
+        });
+    </script>
+</body>
+</html>

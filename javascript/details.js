@@ -12,50 +12,58 @@ document.addEventListener('DOMContentLoaded', () => {
     const addToListButton = document.getElementById('add-to-list-button');
 
     // Retrieve the selected item from localStorage
-    const item = JSON.parse(localStorage.getItem('selectedItem'));
+    const selectedItem = JSON.parse(localStorage.getItem('selectedItem'));
 
-    if (item) {
+    if (selectedItem) {
         // Populate the details page with the item data
-        detailsTitle.textContent = item.title;
-        detailsImage.src = item.image;
-        detailsImage.alt = item.title;
-        detailsYear.textContent = `Year: ${item.year}`;
-        detailsGenre.textContent = `Genre: ${item.genre}`;
-        detailsRating.textContent = `Rating: ${item.rating}`;
-        detailsSynopsis.textContent = `Synopsis: ${item.synopsis || 'No synopsis available.'}`;
-        backgroundImage.style.backgroundImage = `url(${item.backgroundImage})`;
+        detailsTitle.textContent = selectedItem.title;
+        detailsImage.src = selectedItem.image;
+        detailsImage.alt = selectedItem.title;
+        detailsYear.textContent = `Year: ${selectedItem.year}`;
+        detailsGenre.textContent = `Genre: ${selectedItem.genre}`;
+        detailsRating.textContent = `Rating: ${selectedItem.rating}`;
+        detailsSynopsis.textContent = `Synopsis: ${selectedItem.synopsis || 'No synopsis available.'}`;
+        backgroundImage.style.backgroundImage = `url(${selectedItem.backgroundImage})`;
 
         // Show seasons and episodes if the item is a series
-        if (item.seasons) {
+        if (selectedItem.seasons) {
             detailsSeasons.style.display = 'block';
-            detailsSeasons.textContent = `Seasons: ${item.seasons}`;
+            detailsSeasons.textContent = `Seasons: ${selectedItem.seasons}`;
         }
-        if (item.episodes) {
+        if (selectedItem.episodes) {
             detailsEpisodes.style.display = 'block';
-            detailsEpisodes.textContent = `Episodes: ${item.episodes}`;
+            detailsEpisodes.textContent = `Episodes: ${selectedItem.episodes.length}`;
+            document.getElementById('episodes-list').style.display = 'block';
+
+            const episodesList = document.getElementById('episodes');
+            selectedItem.episodes.forEach((episode, index) => {
+                const episodeItem = document.createElement('li');
+                episodeItem.textContent = `Episode ${index + 1}: ${episode.title}`;
+                episodesList.appendChild(episodeItem);
+            });
         }
 
         // Set up the watch button
         watchButton.addEventListener('click', () => {
-            alert(`Now watching: ${item.title}`);
+            window.location.href = `watch.html?videoUrl=${encodeURIComponent(selectedItem.videoUrl)}`; // Redireciona para a página de reprodução
         });
 
         // Set up the add to list button
         addToListButton.addEventListener('click', () => {
             let myList = JSON.parse(localStorage.getItem('myList')) || [];
-            if (!myList.some(existingItem => existingItem.title === item.title)) {
-                myList.push(item);
+            if (!myList.some(existingItem => existingItem.title === selectedItem.title)) {
+                myList.push(selectedItem);
                 localStorage.setItem('myList', JSON.stringify(myList));
                 addToListButton.textContent = 'Added to My List'; // Change button text
-                alert(`${item.title} has been added to your list.`);
+                alert(`${selectedItem.title} has been added to your list.`);
             } else {
-                alert(`${item.title} is already in your list.`);
+                alert(`${selectedItem.title} is already in your list.`);
             }
         });
 
         // Check if the item is already in the list and update the button text accordingly
         let myList = JSON.parse(localStorage.getItem('myList')) || [];
-        if (myList.some(existingItem => existingItem.title === item.title)) {
+        if (myList.some(existingItem => existingItem.title === selectedItem.title)) {
             addToListButton.textContent = 'Added to My List';
         }
     } else {

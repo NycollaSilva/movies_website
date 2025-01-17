@@ -38,6 +38,10 @@
                         <button id="watch-button">Watch</button>
                         <button id="add-to-list-button">Add to My List</button>
                     </div>
+                    <div id="episodes-list" style="display: none;">
+                        <h3>Episodes</h3>
+                        <ul id="episodes"></ul>
+                    </div>
                 </div>
             </div>
         </section>
@@ -46,5 +50,47 @@
         <p>&copy; 2023 MovieStream. All rights reserved.</p>
     </footer>
     <script src="javascript/details.js"></script> <!-- Specific JavaScript for the details page -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const selectedItem = JSON.parse(localStorage.getItem('selectedItem'));
+
+            if (selectedItem) {
+                const detailsImage = document.getElementById('details-image');
+                const detailsTitle = document.getElementById('details-title');
+                const detailsYear = document.getElementById('details-year');
+                const detailsGenre = document.getElementById('details-genre');
+                const detailsRating = document.getElementById('details-rating');
+                const detailsSynopsis = document.getElementById('details-synopsis');
+                const backgroundImage = document.getElementById('background-image');
+                const watchButton = document.getElementById('watch-button');
+                const addToListButton = document.getElementById('add-to-list-button');
+
+                detailsImage.src = selectedItem.image;
+                detailsTitle.textContent = selectedItem.title;
+                detailsYear.textContent = `Year: ${selectedItem.year}`;
+                detailsGenre.textContent = `Genre: ${selectedItem.genre}`;
+                detailsRating.textContent = `Rating: ${selectedItem.rating}`;
+                detailsSynopsis.textContent = `Synopsis: ${selectedItem.synopsis || 'No synopsis available.'}`;
+                backgroundImage.style.backgroundImage = `url(${selectedItem.backgroundImage})`;
+
+                // Set up the watch button
+                watchButton.addEventListener('click', () => {
+                    window.location.href = `watch.html?videoUrl=${encodeURIComponent(selectedItem.videoUrl)}`; // Redireciona para a página de reprodução
+                });
+
+                // Set up the add to list button
+                addToListButton.addEventListener('click', () => {
+                    let myList = JSON.parse(localStorage.getItem('myList')) || [];
+                    if (!myList.some(existingItem => existingItem.title === selectedItem.title)) {
+                        myList.push(selectedItem);
+                        localStorage.setItem('myList', JSON.stringify(myList));
+                        alert(`${selectedItem.title} has been added to your list.`);
+                    } else {
+                        alert(`${selectedItem.title} is already in your list.`);
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
