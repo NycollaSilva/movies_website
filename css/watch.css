@@ -1,12 +1,13 @@
 #video-player {
-    max-width: 100%; /* Não excede a largura da tela */
-    max-height: 80vh; /* Não excede 80% da altura da janela */
-    width: 100%; /* Ocupa 100% da largura disponível */
-    height: auto; /* Proporção automática */
-    display: block; /* Centraliza no contêiner */
+    max-width: 100%; /* Does not exceed the width of the screen */
+    max-height: 80vh; /* Does not exceed 80% of the window height */
+    width: 100%; /* Occupies 100% of the available width */
+    height: auto; /* Automatic proportion */
+    height: auto; /* Automatic proportion */
+    display: block; /*Centers in container */
     margin: 0 auto;
 }
 
 .watch {
-    text-align: center; /* Centraliza título e player */
+    text-align: center; /* Center title and player */
 }

@@ -133,30 +133,54 @@ document.addEventListener('DOMContentLoaded', () => {
         const videoUrl = document.getElementById(`${type}-video-url`).value;
         const seasons = type === 'series' ? document.getElementById('series-seasons').value : null;
         const episodes = type === 'series' ? document.getElementById('series-episodes').value : null;
-
+    
         const newItem = { title, image, backgroundImage, year, genre, rating, synopsis, videoUrl, seasons, episodes };
-
+    
         if (type === 'movie') {
-            window.movies.unshift(newItem); // Add to the beginning of the list
+            window.movies.unshift(newItem); // Add to start of list
         } else {
-            window.series.unshift(newItem); // Add to the beginning of the list
+            window.series.unshift(newItem); // Add to start of list
         }
-
+    
         alert(`${type.charAt(0).toUpperCase() + type.slice(1)} added successfully!`);
-        formContainer.innerHTML = '';
+        document.getElementById('form-container').innerHTML = '';
         updateLocalStorage();
         renderItems(window.movies, '.movie-grid');
         renderItems(window.series, '.series-grid');
+    
+        // Hide the management section
+        document.getElementById('manage-section').style.display = 'none';
     }
-
+    
     function showList(type) {
+        document.getElementById('form-container').innerHTML = ''; // Remove form content
         listContainer.innerHTML = `
             <h3>Manage ${type.charAt(0).toUpperCase() + type.slice(1)}s</h3>
             <ul>
-                ${type === 'movie' ? window.movies.map((movie, index) => `<li>${movie.title} <button onclick="editItem('movie', ${index})">Edit</button> <button onclick="removeItem('movie', ${index})">Remove</button></li>`).join('') : window.series.map((serie, index) => `<li>${serie.title} <button onclick="editItem('series', ${index})">Edit</button> <button onclick="removeItem('series', ${index})">Remove</button></li>`).join('')}
+                ${type === 'movie' ? window.movies.map((movie, index) => `
+                    <li>
+                        <img src="${movie.image}" alt="${movie.title}" style="width: 100px; height: 150px;"/>
+                        ${movie.title}
+                        <button onclick="editItem('movie', ${index})">Edit</button>
+                        <button onclick="removeItem('movie', ${index})">Remove</button>
+                    </li>
+                `).join('') : window.series.map((serie, index) => `
+                    <li>
+                        <img src="${serie.image}" alt="${serie.title}" style="width: 100px; height: 150px;"/>
+                        ${serie.title}
+                        <button onclick="editItem('series', ${index})">Edit</button>
+                        <button onclick="removeItem('series', ${index})">Remove</button>
+                    </li>
+                `).join('')}
             </ul>
         `;
+    
+        // Display the management section
+        document.getElementById('manage-section').style.display = 'block';
     }
+    
+    
+    
 
     window.editItem = function(type, index) {
         const item = type === 'movie' ? window.movies[index] : window.series[index];
