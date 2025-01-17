@@ -1,0 +1,12 @@
+#video-player {
+    max-width: 100%; /* Does not exceed the width of the screen */
+    max-height: 80vh; /* Does not exceed 80% of the window height */
+    width: auto; /* Automatic proportion */
+    height: auto; /* Automatic proportion */
+    display: block; /* Center in container */
+    margin: 0 auto;
+}
+
+.watch {
+    text-align: center; /* Center title and player */
+}

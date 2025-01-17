@@ -6,21 +6,6 @@
     <title>Watch Now</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/watch.css">
-    <style>
-        /* Limitar o tamanho do player */
-        #video-player {
-            max-width: 100%; /* Não ultrapassa a largura da tela */
-            max-height: 80vh; /* Não ultrapassa 80% da altura da janela */
-            width: auto; /* Proporção automática */
-            height: auto; /* Proporção automática */
-            display: block; /* Centralizar no container */
-            margin: 0 auto;
-        }
-
-        .watch {
-            text-align: center; /* Centralizar o título e o player */
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -36,7 +21,7 @@
     </header>
     <main>
         <section class="watch">
-            <h1>Watch Now</h1>
+            <h1>Watching: </h1>
             <video id="video-player" controls>
                 Your browser does not support the video tag.
             </video>
@@ -45,16 +30,6 @@
     <footer>
         <p>&copy; 2023 MovieStream. All rights reserved.</p>
     </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const videoUrl = urlParams.get('videoUrl');
-            if (videoUrl) {
-                const videoPlayer = document.getElementById('video-player');
-                videoPlayer.src = videoUrl;
-                videoPlayer.load();
-            }
-        });
-    </script>
+    <script src="javascript/watch.js"></script> <!-- Script specific to the player page -->
 </body>
 </html>
