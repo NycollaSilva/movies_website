@@ -1,0 +1,95 @@
+/* Movie and series grid styles */
+.movie-grid, .series-grid {
+    display: flex; /* Displays items in a row */
+    overflow-x: auto; /* Adds horizontal scrolling */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Defines columns for grid items */
+    gap: 20px; /* Adds space between items */
+    padding: 20px; /* Adds padding inside the container */
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+/* The gradient is something experimental and will be corrected */
+
+.movie-grid::-webkit-scrollbar, .series-grid::-webkit-scrollbar { 
+    display: none; /* Hides the scrollbar in WebKit browsers (Chrome, Safari) */ }
+
+.movie-grid::before, .series-grid::before, .movie-grid::after, .series-grid::after { 
+    content: ''; 
+    z-index: 1;
+    position: fixed;
+    top: 0; 
+    width: 100px;
+    height: 100%;
+    pointer-events: none;}
+
+.movie-grid::before, .series-grid::before {
+    left: 0; 
+    background: linear-gradient(to right, #141414, rgba(20, 20, 20, 0)); 
+}
+
+.movie-grid::after, .series-grid::after { 
+    right: 0; 
+    background: linear-gradient(to left, #141414, rgba(20, 20, 20, 0));
+
+}
+
+/* Movies and Series text */
+
+.movies h2, .series h2 {
+    z-index: 2;
+}
+
+.movie-item, .series-item {
+    position: relative; /* Positions items relative to their container */
+    background-color: #333; /* Sets the background color */
+    padding: 10px; /* Adds padding inside the item */
+    border-radius: 8px; /* Rounds the corners of the item */
+    text-align: center; /* Centers the text */
+    overflow: hidden; /* Hides overflowing content */
+    transition: transform 0.3s ease; /* Smooth transition for transform */
+    flex: 0 0 auto; /* Prevents items from growing or shrinking */
+    z-index: 0;
+}
+
+.movie-item:hover, .series-item:hover {
+    transform: scale(1.05); /* Slightly enlarges the item on hover */
+}
+
+.movie-item img, .series-item img {
+    width: 100%; /* Sets the width to 100% of the container */
+    height: 300px; /* Fixed height for posters */
+    object-fit: cover; /* Ensures the image covers the area */
+    border-radius: 8px; /* Rounds the corners of the image */
+}
+
+.movie-info, .series-info {
+    display: none; /* Hides the info by default */
+    position: absolute; /* Positions the info absolutely */
+    top: 0; /* Aligns the info to the top */
+    left: 0; /* Aligns the info to the left */
+    width: 100%; /* Sets the width to 100% of the container */
+    height: 100%; /* Sets the height to 100% of the container */
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    color: #fff; /* White text color */
+    padding: 20px; /* Adds padding inside the info */
+    box-sizing: border-box; /* Includes padding in the element's total width and height */
+    opacity: 0; /* Makes the info invisible */
+    transition: opacity 0.3s ease; /* Smooth transition for opacity */
+}
+
+.movie-item:hover .movie-info, .series-item:hover .series-info {
+    display: block; /* Displays the info */
+    opacity: 1; /* Makes the info visible */
+}
+
+.movie-info h3, .series-info h3 {
+    margin-top: 0; /* Removes top margin */
+}
+
+footer {
+    text-align: center; /* Centers the text */
+    padding: 20px; /* Adds padding inside the footer */
+    background-color: #000; /* Sets the background color */
+    color: #fff; /* Sets the text color */
+}

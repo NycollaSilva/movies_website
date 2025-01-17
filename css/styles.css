@@ -166,13 +166,14 @@ nav a {
 /* Movie and series grid styles */
 .movie-grid, .series-grid {
     display: flex; /* Displays items in a row */
-    overflow-x: auto; /* Adds horizontal scrolling */
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Defines columns for grid items */
     gap: 20px; /* Adds space between items */
     padding: 20px; /* Adds padding inside the container */
+    position: relative;
 }
 
-.movie-grid::-webkit-scrollbar, .series-grid::-webkit-scrollbar { display: none; /* Hides the scrollbar in WebKit browsers (Chrome, Safari) */ }
+.movie-grid::-webkit-scrollbar, .series-grid::-webkit-scrollbar { 
+    display: none; /* Hides the scrollbar in WebKit browsers (Chrome, Safari) */ }
 
 .movie-item, .series-item {
     position: relative; /* Positions items relative to their container */
