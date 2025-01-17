@@ -1,243 +1,248 @@
 body {
-    font-family: Arial, sans-serif;
-    margin:  0;
-    padding: 0;
-    background-color: #141414;
-    color: #fff;
+    font-family: Arial, sans-serif; /* Sets the font family to Arial, with sans-serif as a fallback */
+    margin:  0; /* Removes default margin */
+    padding: 0; /* Removes default padding */
+    background-color: #141414; /* Sets a dark background color */
+    color: #fff; /* Sets the text color to white */
 }
 
 /* Header styles */
 header {
     background-color: #000; /* Black background for the navbar */
-    padding: 10px 0;
+    padding: 10px 0; /* Adds padding at the top and bottom of the header */
 }
 
 header .logo {
-    color: #fff;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
+    color: #fff; /* White color for the logo text */
+    font-size: 24px; /* Sets the font size */
+    font-weight: bold; /* Makes the text bold */
+    text-align: center; /* Centers the text horizontally */
 }
 
 header nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    list-style: none; /* Removes bullet points from the list */
+    padding: 0; /* Removes default padding */
+    margin: 0; /* Removes default margin */
+    display: flex; /* Displays list items in a row */
+    justify-content: center; /* Centers the list items horizontally */
+    align-items: center; /* Centers the list items vertically */
 }
 
 header nav ul li {
-    margin: 0 15px;
+    margin: 0 15px; /* Adds horizontal margin between list items */
 }
 
 header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
+    color: #fff; /* White color for the links */
+    text-decoration: none; /* Removes underline from the links */
+    font-size: 18px; /* Sets the font size */
 }
 
 header nav ul li a:hover {
-    text-decoration: underline;
+    text-decoration: underline; /* Adds underline on hover */
 }
 
 /* Search bar styles */
 header .search {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
+    display: flex; /* Displays search bar in a row */
+    justify-content: center; /* Centers the search bar horizontally */
+    align-items: center; /* Centers the search bar vertically */
+    margin-top: 10px; /* Adds top margin */
 }
 
 header .search input {
-    width: 300px;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    width: 300px; /* Sets the width of the search input */
+    padding: 10px; /* Adds padding inside the search input */
+    font-size: 16px; /* Sets the font size */
+    border: 1px solid #ccc; /* Adds a border */
+    border-radius: 5px; /* Rounds the corners of the search input */
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 24px; /* Sets the font size */
+    font-weight: bold; /* Makes the text bold */
 }
 
 nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
+    list-style: none; /* Removes bullet points from the list */
+    display: flex; /* Displays list items in a row */
+    gap: 20px; /* Adds space between list items */
 }
 
 nav a {
-    color: #fff;
-    text-decoration: none;
+    color: #fff; /* White color for the links */
+    text-decoration: none; /* Removes underline from the links */
 }
 
 /* Hero section styles */
 .hero {
-    position: relative;
-    text-align: center;
-    color: #fff;
-    padding: 50px 20px;
+    position: relative; /* Positions the hero section relative to its container */
+    text-align: center; /* Centers the text */
+    color: #fff; /* White color for the text */
+    padding: 50px 20px; /* Adds padding inside the hero section */
 }
 
 .hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
-    filter: blur(8px); /* Apply a slight blur */
+    position: absolute; /* Positions the background absolutely */
+    top: 0; /* Aligns the background to the top */
+    left: 0; /* Aligns the background to the left */
+    width: 100%; /* Sets the width to 100% of the container */
+    height: 100%; /* Sets the height to 100% of the container */
+    background-size: cover; /* Covers the container with the background image */
+    background-position: center; /* Centers the background image */
+    z-index: -1; /* Moves the background behind other elements */
+    filter: blur(8px); /* Applies a slight blur to the background */
 }
 
 .hero-background::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)); /* Darker gradient */
-    z-index: -1;
+    content: ''; /* Adds an empty content */
+    position: absolute; /* Positions the gradient absolutely */
+    top: 0; /* Aligns the gradient to the top */
+    left: 0; /* Aligns the gradient to the left */
+    width: 100%; /* Sets the width to 100% of the container */
+    height: 100%; /* Sets the height to 100% of the container */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)); /* Darker gradient background */
+    z-index: -1; /* Moves the gradient behind other elements */
 }
 
 .hero-content {
-    position: relative;
-    z-index: 1;
+    position: relative; /* Positions the content relative to its container */
+    z-index: 1; /* Moves the content in front of other elements */
 }
 
 .hero-content img {
-    width: 300px;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    width: 300px; /* Sets the width of the image */
+    height: auto; /* Keeps the aspect ratio of the image */
+    border-radius: 8px; /* Rounds the corners of the image */
+    margin-bottom: 20px; /* Adds bottom margin */
 }
 
 .hero-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+    display: flex; /* Displays buttons in a row */
+    justify-content: center; /* Centers the buttons horizontally */
+    gap: 20px; /* Adds space between buttons */
 }
 
 .hero-buttons button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    padding: 10px 20px; /* Adds padding inside the button */
+    font-size: 16px; /* Sets the font size */
+    border: none; /* Removes border */
+    border-radius: 5px; /* Rounds the corners of the button */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
 }
 
 #watch-button {
-    background-color: #ff6347;
-    color: #fff;
+    background-color: #ff6347; /* Sets the background color */
+    color: #fff; /* Sets the text color */
 }
 
 #watch-button:hover {
-    background-color: #ff4500;
+    background-color: #ff4500; /* Changes background color on hover */
 }
 
 #add-to-list-button {
-    background-color: #ccc;
-    color: #000;
+    background-color: #ccc; /* Sets the background color */
+    color: #000; /* Sets the text color */
 }
 
 #add-to-list-button:hover {
-    background-color: #aaa;
+    background-color: #aaa; /* Changes background color on hover */
 }
 
 .search {
-    text-align: center;
-    margin: 20px 0;
+    text-align: center; /* Centers the search bar */
+    margin: 20px 0; /* Adds vertical margin */
 }
 
 #search-input {
-    width: 80%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    width: 80%; /* Sets the width to 80% of the container */
+    padding: 10px; /* Adds padding inside the input */
+    font-size: 16px; /* Sets the font size */
+    border: 1px solid #ccc; /* Adds a border */
+    border-radius: 5px; /* Rounds the corners of the input */
 }
 
 /* Movie and series grid styles */
 .movie-grid, .series-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    display: flex; /* Displays items in a row */
+    overflow-x: auto; /* Adds horizontal scrolling */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Defines columns for grid items */
+    gap: 20px; /* Adds space between items */
+    padding: 20px; /* Adds padding inside the container */
 }
 
+.movie-grid::-webkit-scrollbar, .series-grid::-webkit-scrollbar { display: none; /* Hides the scrollbar in WebKit browsers (Chrome, Safari) */ }
+
 .movie-item, .series-item {
-    position: relative;
-    background-color: #333;
-    padding: 10px;
-    border-radius: 8px;
-    text-align: center;
-    overflow: hidden;
-    transition: transform 0.3s ease;
+    position: relative; /* Positions items relative to their container */
+    background-color: #333; /* Sets the background color */
+    padding: 10px; /* Adds padding inside the item */
+    border-radius: 8px; /* Rounds the corners of the item */
+    text-align: center; /* Centers the text */
+    overflow: hidden; /* Hides overflowing content */
+    transition: transform 0.3s ease; /* Smooth transition for transform */
+    flex: 0 0 auto; /* Prevents items from growing or shrinking */
 }
 
 .movie-item:hover, .series-item:hover {
-    transform: scale(1.05);
+    transform: scale(1.05); /* Slightly enlarges the item on hover */
 }
 
 .movie-item img, .series-item img {
-    width: 100%;
+    width: 100%; /* Sets the width to 100% of the container */
     height: 300px; /* Fixed height for posters */
-    object-fit: cover; /* Ensure the image covers the area */
-    border-radius: 8px;
+    object-fit: cover; /* Ensures the image covers the area */
+    border-radius: 8px; /* Rounds the corners of the image */
 }
 
 .movie-info, .series-info {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    padding: 20px;
-    box-sizing: border-box;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    display: none; /* Hides the info by default */
+    position: absolute; /* Positions the info absolutely */
+    top: 0; /* Aligns the info to the top */
+    left: 0; /* Aligns the info to the left */
+    width: 100%; /* Sets the width to 100% of the container */
+    height: 100%; /* Sets the height to 100% of the container */
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    color: #fff; /* White text color */
+    padding: 20px; /* Adds padding inside the info */
+    box-sizing: border-box; /* Includes padding in the element's total width and height */
+    opacity: 0; /* Makes the info invisible */
+    transition: opacity 0.3s ease; /* Smooth transition for opacity */
 }
 
 .movie-item:hover .movie-info, .series-item:hover .series-info {
-    display: block;
-    opacity: 1;
+    display: block; /* Displays the info */
+    opacity: 1; /* Makes the info visible */
 }
 
 .movie-info h3, .series-info h3 {
-    margin-top: 0;
+    margin-top: 0; /* Removes top margin */
 }
 
 .add-to-list-btn {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #ff6347;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Adds top margin */
+    padding: 10px 20px; /* Adds padding inside the button */
+    background-color: #ff6347; /* Sets the background color */
+    color: #fff; /* Sets the text color */
+    border: none; /* Removes border */
+    border-radius: 5px; /* Rounds the corners of the button */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
 }
 
 .add-to-list-btn:hover {
-    background-color: #ff4500;
+    background-color: #ff4500; /* Changes background color on hover */
 }
 
 .add-to-list-btn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+    background-color: #ccc; /* Sets the background color when the button is disabled */
+    cursor: not-allowed; /* Changes cursor to indicate the button is not clickable */
 }
 
 footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #000;
+    text-align: center; /* Centers the text */
+    padding: 20px; /* Adds padding inside the footer */
+    background-color: #000; /* Sets the background color */
+    color: #fff; /* Sets the text color */
 }
