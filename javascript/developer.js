@@ -92,23 +92,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const omdbId = omdbIdMatch[1]; // Extract the OMDB ID from the URL
         const apiKey = '8ea8c787'; // Replace with your OMDB API key
-
+    
         try {
             const response = await fetch(`http://www.omdbapi.com/?i=${omdbId}&apikey=${apiKey}`);
             const data = await response.json();
-
+    
             if (data.Response === 'True') {
+                console.log(data); // Log the data to check the returned values
+                
                 const type = data.Type === 'series' ? 'series' : 'movie';
-                document.getElementById(`${type}-title`).value = data.Title;
-                document.getElementById(`${type}-image`).value = data.Poster;
-                document.getElementById(`${type}-background-image`).value = data.Poster; // Use the same poster as background
-                document.getElementById(`${type}-year`).value = data.Year;
-                document.getElementById(`${type}-genre}`).value = data.Genre; // Get all genres
-                document.getElementById(`${type}-rating`).value = data.imdbRating;
-                document.getElementById(`${type}-synopsis`).value = data.Plot;
+                document.getElementById(`${type}-title`).value = data.Title || '';
+                document.getElementById(`${type}-image`).value = data.Poster || '';
+                document.getElementById(`${type}-background-image`).value = data.Poster || ''; // Use the same poster as background
+                document.getElementById(`${type}-year`).value = data.Year || '';
+                document.getElementById(`${type}-genre`).value = data.Genre || ''; // Get all genres
+                document.getElementById(`${type}-rating`).value = data.imdbRating || '';
+                document.getElementById(`${type}-synopsis`).value = data.Plot || '';
+    
                 if (type === 'series') {
-                    document.getElementById('series-seasons').value = data.totalSeasons;
-                    document.getElementById('series-episodes').value = data.totalEpisodes; // Assuming totalEpisodes is available
+                    document.getElementById('series-seasons').value = data.totalSeasons || '';
+                    document.getElementById('series-episodes').value = data.totalEpisodes || ''; // Assuming totalEpisodes is available
                 }
             } else {
                 alert('Item not found!');
@@ -118,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Failed to fetch data from OMDB.');
         }
     }
-
+    
     function addItem(type) {
         const title = document.getElementById(`${type}-title`).value;
         const image = document.getElementById(`${type}-image`).value;
