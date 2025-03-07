@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         const omdbId = omdbIdMatch[1]; // Extract the OMDB ID from the URL
-        const apiKey = '8ea8c787'; // Replace with your OMDB API key
+        const apiKey = 'YOUR_OMDB_API_KEY'; // Replace with your OMDB API key
     
         try {
             const response = await fetch(`http://www.omdbapi.com/?i=${omdbId}&apikey=${apiKey}`);
